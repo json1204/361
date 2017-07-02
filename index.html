@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+    <!--<meta http-equiv="X-UA-Compatible" content="ie=edge">-->
+    <link rel="stylesheet" type="" href="css/jquery.fullPage.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <title>360</title>
+
+    <script src="js/jquery-1.12.4.js"></script>
+    <script src="js/jquery.fullPage.min.js"></script>
+
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            /*font-size: 30px;*/
+        }
+        /*修改小圆点*/
+        #fp-nav ul li a span, .fp-slidesNav ul li a span{
+            border: 1px solid #fff;
+            background: none;
+        }
+        #fp-nav ul li a.active span, 
+        .fp-slidesNav ul li a.active span, 
+        #fp-nav ul li:hover a.active span, 
+        .fp-slidesNav ul li:hover a.active span {
+            background-color: #fff;
+        }
+        /*第一屏*/
+        .one {
+            overflow: hidden;
+            /*display: flex;*/
+            /*justify-content: center;*/
+            /*align-items: center;*/
+        }
+        .one .logo{
+            width: 251px;
+            height: 186px;
+            background: url(images/logo.png) no-repeat;
+            margin: 80px auto;
+        }
+        .one .text{
+            text-align: center;
+        }
+        .one .text img{
+            margin: 0 30px;
+            opacity: 0.1;
+            transition: all 1s;
+            
+        }
+        .one .info{
+            width: 772px;
+            height: 50px;
+            background: url(images/info_1.png) no-repeat;
+            margin: 120px auto;
+        }
+        /*第一屏动画*/
+        .one.current img{
+            margin: 0 5px;
+            opacity: 1;
+            
+        }
+        /*第二屏*/
+        .two{
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+        .two .sheild{
+            width: 450px;
+            height: 490px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-520px,-210px)
+
+        }
+        .two .sheild img{
+            transition: all 1s;
+            
+        }
+        .two .sheild img:nth-child(1){
+            transform: translate(100px,300px) rotate(70deg)
+        }
+         .two .sheild img:nth-child(2){
+            transform: translate(-100px,300px) rotate(170deg)
+        }
+         .two .sheild img:nth-child(3){
+            transform: translate(-100px,-300px) rotate(70deg)
+        }
+         .two .sheild img:nth-child(4){
+            transform: translate(200px,300px) rotate(270deg)
+        }
+         .two .sheild img:nth-child(5){
+            transform: translate(-200px,-300px) rotate(170deg)
+        }
+         .two .sheild img:nth-child(6){
+            transform: translate(300px,-300px) rotate(270deg)
+        }
+         .two .sheild img:nth-child(7){
+            transform: translate(-100px,300px) rotate(70deg)
+        }
+         .two .sheild img:nth-child(8){
+            transform: translate(-400px,300px) rotate(-90deg)
+        }
+         .two .sheild img:nth-child(9){
+            transform: translate(-200px,300px) rotate(-270deg)
+        }
+        
+        .two .incfo{
+            width: 635px;
+            height: 310px;
+            position: absolute;
+            top: 39%;
+            left: 50%;
+                margin: -65px 0 40px 0;
+            /*transform: translate(20px,-110px);*/
+            background: url(images/info_2.png)
+
+        }
+        /*第二屏动画*/
+        .two.current .sheild img{
+            /*transition: all 1s;*/
+            transform: translate(0,0) rotate(0)
+        }
+        /*第三屏*/
+        .three{
+            overflow: hidden;
+            position: relative;
+            display: flex;
+        }
+        .three .incfo{
+            width: 635px;
+            height: 278px;
+            background: url(images/info_3.png) no-repeat;
+            position: absolute;
+            top:50%;
+            left: 50%;
+            /*transform: translate(-90%,-50%);*/
+            margin: -150px 0 0 -628px;
+
+        } 
+        .three .circle{
+            width: 453px;
+            height: 450px;
+            background: url(images/circle.png) no-repeat;
+             position: absolute;
+            top:50%;
+            right: 50%;
+            margin: -170px -493px 0 0px;
+            /*transform: translate(120%,-35%);*/
+        } 
+        .three .rocket{
+            width: 204px;
+            height: 204px;
+            background: url(images/rocket.png) no-repeat;
+            position: absolute;
+            top:50%;
+            right: 50%;
+            /*transform: translate(-100%,100%)*/
+            /*margin: -300px -500px;*/
+            margin: 1000px 370px;
+        } 
+       /*第三屏的动画*/
+        .three.current .rocket{
+            transition: all 1s;
+            /*transform: translate(0,0)*/
+            /*transform: translate(400px,-30px)*/
+            margin: -73px -370px;
+        }
+        /*第四屏*/
+        .four {
+            display: flex;
+            /*overflow: hidden;*/
+            /*margin-top: 60px;*/
+            /*padding-top: 100px;*/
+            justify-content: center;
+            align-items: center;
+        }
+        .four .movie{
+            width: 530px;
+            height: 450px;
+            /*background: red;*/
+            position: relative;
+            margin-top: 40px;
+            
+        }
+        .four .movie .seach{
+            width: 530px;
+            height: 66px;
+            background: url(images/search.png) no-repeat;
+            transform: translate(-1000px,0);
+            /*opacity:0;*/
+            /*transition: all 1s;*/
+        }
+        .four .movie .text{
+            width: 530px;
+            height: 99px;
+            position: absolute;
+            top:24px;
+            left: 18px;
+            width: 0;
+            /*opacity: 0;*/
+            transition: all 2s 1s;
+            background: url(images/key.png) no-repeat;
+        }
+        .four .movie .prc{
+            width: 530px;
+            height: 374px;
+            position: absolute;
+            top:57px;
+            left: 0px;
+            height: 0;
+            opacity: 0;
+            /*transition: all 2s 2s;*/
+            background: url(images/result.png) no-repeat;
+        }
+         .four {
+
+        }
+         .four .incfo {
+            width: 620px;
+            height: 300px;
+            background: url(images/info_4.png) no-repeat;
+            margin-left: 80px;
+
+        }
+        /*第四屏的动画*/
+         .four.current .movie .seach{
+            transform: translate(0,0);
+            transition: all 1s;
+            
+            /*opacity: 1;*/
+         }
+        .four.current .movie .text{
+            transition: all 1s 1s;
+            /*opacity: 1;*/
+            width: 530px;            
+        }
+
+        .four.current .movie .prc{
+            transition: all 1s 2s;
+            
+            height: 374px;
+            opacity: 1;
+        }
+        /*第五屏*/
+        .five{
+            display: flex;
+            /*改变主侧轴，但是还是用主侧轴的方向*/
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .five .incfo{
+            width: 1077px;
+            height: 134px;
+            background: url(images/info_5.png) no-repeat;  
+            margin-top: 40px;  
+        }
+        .five .brower{
+            width: 1004px;
+            height: 560px;
+            background: rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        .five .brower{
+            
+        }
+        .five .brower .line-top,
+        .five .brower .line-bottom
+         {
+           width: 1004px;
+           height: 1px;
+           background: rgba(255, 255, 255, 1); 
+           position: absolute;
+           top:1px;
+           transition:all 1s;
+           /*z-index: 2;*/
+        }
+        .line-top{
+            transform: translate(150%,0)
+        }
+        .five .brower .line-bottom{
+            transform: translate(-150%,0);
+            top:auto;
+            bottom: 0;
+        }
+         .five .brower .line-left,
+          .five .brower .line-right
+          {
+            width: 1px;
+           height: 560px;
+           background: rgba(255, 255, 255, 1);
+           position: absolute;
+           left: 0;
+           transition:all 1s;
+        }
+        .five .brower .line-left {
+              transform: translate(0,150%);
+        }
+        .five .brower .line-right {
+            left: auto;
+            right: 0;
+            transform: translate(0,-150%)
+        }
+        .five .brower .tool{
+            width: 1004px;
+            height: 79px;
+            background: url(images/toolbar.png) no-repeat;
+            opacity: 0;
+             transition: all 2s;
+        }
+        .five .brower .sBox{
+            width: 920px;
+            height: 30px;
+            border: 1px solid rgba(255, 255, 255, 1);
+            position: absolute;
+            top:28px;
+            left: 76px;
+            transform: translate(-150%,0);
+             transition: all 2s;
+        }
+         .five .brower .extra{
+            width: 394px;
+            height: 29px;
+            background: url(images/extra.png) no-repeat;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            opacity: 0;
+             transition: all 2s;
+
+         }
+          .five .brower .b-bottom{
+             width: 1004px;
+             height: 1px;
+             background-color:rgba(255, 255, 255, 1);
+             position: absolute;
+             bottom: 30px;
+             left: 0;
+             transform: translate(-150%,0);
+             transition: all 2s;
+         }
+        /*第五屏动画*/
+        .five.current .brower div[class^='line']{
+            transform: translate(0,0);
+            
+        }
+         .five.current .brower .tool{
+            opacity: 1;
+         }
+         .five.current .brower .sBox{
+            transform: translate(0,0)
+         }
+         .five.current .brower .extra{
+            opacity: 1;
+         }
+         .five.current .brower .b-bottom{
+            transform: translate(0,0)
+         }
+    </style>
+</head>
+<body>
+    <div id="box">
+    <!--每一个class为section的div都是一屏,section这个类是固定的-->
+    <div class="section one">
+        <div class="logo"></div>
+        <div class="text">
+            <img src="images/text_1.png" alt="">
+            <img src="images/text_2.png" alt="">
+            <img src="images/text_3.png" alt="">
+            <img src="images/text_4.png" alt="">
+            <img src="images/text_5.png" alt="">
+            <img src="images/text_6.png" alt="">
+            <img src="images/text_7.png" alt="">
+            <img src="images/text_8.png" alt="">
+        </div>
+        <div class="info"></div>
+    </div>
+    <div class="section two">
+        <div class="sheild">
+            <img src="images/shield_1.png" alt="">
+            <img src="images/shield_2.png" alt="">
+            <img src="images/shield_3.png" alt="">
+            <img src="images/shield_4.png" alt="">
+            <img src="images/shield_5.png" alt="">
+            <img src="images/shield_6.png" alt="">
+            <img src="images/shield_7.png" alt="">
+            <img src="images/shield_8.png" alt="">
+            <img src="images/shield_9.png" alt="">
+        </div>
+        <div class="incfo"></div>
+    </div>
+    <div class="section three">
+        <div class="incfo"></div>
+        <div class="circle"></div>
+        <div class="rocket"></div>
+    </div>
+    <div class="section four">
+        <div class="movie">
+            <div class="seach"></div>
+            <div class="text"></div>
+            <div class="prc"></div>
+        </div>
+        <div class="incfo">
+
+        </div>
+    </div>
+    <div class="section five">
+        <div class="incfo"></div>
+        <div class="brower">
+            <div class="line-top"></div>
+            <div class="line-bottom"></div>
+            <div class="line-left"></div>
+            <div class="line-right"></div>
+            <div class="tool"></div>
+            <div class="sBox"></div>
+            <div class="extra"></div>
+            <div class="b-bottom"></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    $(function(){
+        // $('.section').eq(0).addClass('current');
+        $('#box').fullpage({
+            sectionsColor:['red','green','#f92','rgb(22, 186, 157)','pink'],
+            navigation:true,
+            // resize:true,//字体变小图片不变
+            continuousVertical:true,
+            // verticalCentered:true,
+          verticalCentered:false,
+        //   scrollingSpeed:1000,
+        //   onLeave
+            afterLoad:function (anchorLink,index){
+                // console.log(index)
+                $('.section').eq(index-1).addClass('current').siblings().removeClass('current');
+                
+                if(index==1){
+                    $('.one .logo').addClass('animated bounceIn')
+                    $('.one .info').addClass('animated rotateIn')
+                }else{
+                    $('.one .logo').removeClass('animated bounceIn')
+                    $('.one .info').removeClass('animated rotateIn')
+                }
+                 if(index==2){
+                    // $('.logo').addClass('animated bounceIn')
+                    $('.two .incfo').addClass('animated lightSpeedIn')
+                }else{
+                    // $('.logo').removeClass('animated bounceIn')
+                    $('.two .incfo').removeClass('animated lightSpeedIn')
+                }
+                 if(index==3){
+                    $('.three .circle').addClass('animated rotateIn')
+                    $('.three .incfo').addClass('animated rotateInUpLeft')
+                    // $('.incfo').addClass('animated rotateInDownLeft')
+                }else{
+                    $('.three .circle').removeClass('animated rotateIn')
+                    $('.three .incfo').removeClass('animated rotateInUpLeft')
+                    // $('.incfo').removeClass('animated rotateInDownLeft')
+                }
+                 if(index==4){
+                    // $('.three .circle').addClass('animated rotateIn')
+                    $('.four .incfo').addClass('animated lightSpeedIn')
+                    // $('.incfo').addClass('animated rotateInDownLeft')
+                }else{
+                    // $('.three .circle').removeClass('animated rotateIn')
+                    $('.four .incfo').removeClass('animated lightSpeedIn')
+                    // $('.incfo').removeClass('animated rotateInDownLeft')
+                }
+                 if(index==5){
+                    // $('.three .circle').addClass('animated rotateIn')
+                    $('.five .incfo').addClass('animated flipInY')
+                    // $('.incfo').addClass('animated rotateInDownLeft')
+                }else{
+                    // $('.three .circle').removeClass('animated rotateIn')
+                    $('.five .incfo').removeClass('animated flipInY')
+                    // $('.incfo').removeClass('animated rotateInDownLeft')
+                }
+            }
+
+
+        })
+    }
+    )
+</script>
